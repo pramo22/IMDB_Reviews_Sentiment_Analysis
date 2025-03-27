@@ -16,3 +16,20 @@ This project analyzes IMDB movie reviews to determine sentiment (positive, neutr
   - Web-based interface using Flask.
   - User authentication and session management
   - Database integration with SQL Alchemy
+
+## Installed Packages
+  - Install Flask
+    ```bash
+       pip install flask
+    
+  - Install scikit-learn
+    ``` bash
+     pip install sklearn
+    
+  - Install Pandas
+    ``` bash
+     pip install pandas
+    
+  - Install Numpy
+    ``` bash
+     pip install numpy
