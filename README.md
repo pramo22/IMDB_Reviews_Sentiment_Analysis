@@ -26,12 +26,12 @@ This project analyzes IMDB movie reviews to determine sentiment (positive, neutr
      pip install pandas
     
   - Install Numpy
-    ``` bash
+     ``` bash
      pip install numpy
 
 ## To run this project
-
-    ``` bash
+   - 
+      ``` bash
       py app.py
 
 ## Usage
