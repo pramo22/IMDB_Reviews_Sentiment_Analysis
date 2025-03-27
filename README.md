@@ -47,6 +47,3 @@ This project analyzes IMDB movie reviews to determine sentiment (positive, neutr
    - [swathi-agarwal](https://github.com/swathi-agarwal) - Machine Learning Developer 
    - [Deepakmity02](https://github.com/Deepakmity02) - Machine Learning Developer
    - [HaniCode254](https://github.com/HaniCode254) - Machine Learning Developer
-
-# License
-  This project is licensed under the MIT License. See the LICENSE file for details.
