@@ -44,9 +44,9 @@ This project analyzes IMDB movie reviews to determine sentiment (positive, neutr
 
 # Contributors ✨
   Thanks to these amazing contributors:
-   - [swathi-agarwal](https://github.com/swathi-agarwal) - Machine Learning Developer 
-   - [Deepakmity02](https://github.com/Deepakmity02) - Machine Learning Developer
-   - [HaniCode254](https://github.com/HaniCode254) - Machine Learning Developer
+   <a href = "https://github.com/kunal-kushwaha/DSA-Bootcamp-Java/graphs/contributors">
+      <img src = "https://contrib.rocks/image?repo=kunal-kushwaha/DSA-Bootcamp-Java"/>
+   </a>
 
 # License
 
