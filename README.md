@@ -45,7 +45,7 @@ This project analyzes IMDB movie reviews to determine sentiment (positive, neutr
 # Contributors ✨
   Thanks to these amazing contributors:
    <a href = "https://github.com/HaniCode254">
-      <img src = "https://github.com/HaniCode254">
+      <img src = "https://avatars.githubusercontent.com/u/204080953?v=4"/>
    </a>
 
 # License
