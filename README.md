@@ -33,3 +33,8 @@ This project analyzes IMDB movie reviews to determine sentiment (positive, neutr
   - Install Numpy
     ``` bash
      pip install numpy
+
+## To run this project
+
+   ``` bash
+     py app.py
