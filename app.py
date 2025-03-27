@@ -190,7 +190,7 @@ def predict_future_sentiment(username):
 
     user_reviews = Reviews.query.filter_by(user_id=user.id).order_by(Reviews.id).all()
 
-    if len(user_reviews) < 5:
+    if len(user_reviews) <= 1:
         return "Not enough data to predict trends"
     
     sentiments_mapping = {'Negative': 0, 'Neutral': 1, 'Positive': 2}
