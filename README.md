@@ -4,11 +4,6 @@
 
 This project analyzes IMDB movie reviews to determine sentiment (positive, neutral, or negative) using machine learning. It leverages Flask and Natural Language Processing (NLP) techniques.
 
-## Contributors
- - [swathi-agarwal](https://github.com/swathi-agarwal)
- - [Deepakmity02](https://github.com/Deepakmity02)
- - [HaniCode254](https://github.com/HaniCode254)
-
 ## Features
 
   - Sentiment Analysis of movie reviews
@@ -36,5 +31,22 @@ This project analyzes IMDB movie reviews to determine sentiment (positive, neutr
 
 ## To run this project
 
-   ``` bash
-     py app.py
+    ``` bash
+      py app.py
+
+## Usage
+
+   - Enter a movie review
+
+   - Click on "Analyze Sentiment"
+
+   - View the predicted sentiment (Positive, Neutral, Negative)
+
+# Contributors ✨
+  Thanks to these amazing contributors:
+   - [swathi-agarwal](https://github.com/swathi-agarwal) - Machine Learning Developer 
+   - [Deepakmity02](https://github.com/Deepakmity02) - Machine Learning Developer
+   - [HaniCode254](https://github.com/HaniCode254) - Machine Learning Developer
+
+# License
+  This project is licensed under the MIT License. See the LICENSE file for details.
