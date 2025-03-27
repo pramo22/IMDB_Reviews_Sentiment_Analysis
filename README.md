@@ -44,9 +44,9 @@ This project analyzes IMDB movie reviews to determine sentiment (positive, neutr
 
 # Contributors ✨
   Thanks to these amazing contributors:
-   <a href = "https://github.com/pramo22/IMDB_Reviews_Sentiment_Analysis/graphs/contributors?selectedMetric=commits">
-      <img src = "https://avatars.githubusercontent.com/u/204080953?v=4"/>
-   </a>
+   - [https://github.com/swathi-agarwal](https://github.com/swathi-agarwal) - Machine Learning Developer to work on the backend part of the project
+   - [https://github.com/Deepakmity02](https://github.com/Deepakmity02) - Machine Learning Developer to work on the backend part of the project
+   - [https://github.com/HaniCode254](https://github.com/HaniCode254) - Frontend Developer to work on the frontend part of the project
 
 # License
 
