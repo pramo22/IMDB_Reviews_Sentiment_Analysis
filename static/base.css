@@ -1,0 +1,35 @@
+center{
+    width: auto;
+    margin: 70px;
+    box-shadow: 6px 2px 30px 0px rgba(0, 0, 0, 0.75);
+    height: auto;
+    padding: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    border-radius: 5px;
+}
+a{
+    color: #fff;
+}
+form{
+    top: 20px;
+    border: 1px solid #fff;
+    border-radius: 8px;   
+}
+.btn-wrapper{
+    color: #fff;
+}
+#review{
+    border: 3px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    width: 450px;
+    height: 130px;
+}
+h3{
+    font-family: "Roboto Flex", sans-serif;
+    font-style: normal;
+}
+h1{
+    font-family: "Roboto Flex", sans-serif;
+    font-style: normal;
+}

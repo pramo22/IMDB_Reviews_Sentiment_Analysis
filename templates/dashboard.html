@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+{% extends "main.html" %}
+{% block content %}
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{url_for('static', filename='dashboard.css') }}">
+    
+</head>
+<body>
+    <center>
+        <br>
+        <h1>Welcome to Dashboard!</h1>
+
+        <div class="dashboard-wrapper">
+            <h3 style="color: #fff;" class="btn-warning" >Total Reviews: {{ total_reviews }}</h3>
+            <h3 class="btn-success">Positive Reviews: {{ positive_reviews }}</h3>
+            <h3 class="btn-info">Neutral Reviews: {{ neutral_reviews }}</h3>
+            <h3 class="btn-danger">Negative Reviews: {{ negative_reviews }}</h3>
+        </div>
+        <br>
+        <br>
+
+        <h2>Your Reviews</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Review Content</th>
+                    <th>Sentiment</th>
+                    <th>Workload (sec)</th>
+                    <th>Priority</th>
+                    <th>Predicted Time (sec)</th>
+                    <th>Deadline</th>
+                    <th>urgency</th>
+                    <th>Status</th>
+                    <th>Efficiency (%)</th>
+                    <th>Action</th> <!-- Add Delete column -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for review in reviews %}
+                    <tr>
+                        <td>{{ review.content }}</td>
+                        <td>{{ review.sentiment }}</td>
+                        <td>{{ review.workload }}</td>
+                        <td>{{ review.priority }}</td> 
+                        <td>{{ review.predicted_time }}</td>
+                        <td>{{ review.deadline.strftime('%d-%m-%Y   %H:%M:%S') }}</td>
+                        <td>{{ review.urgency }}</td>
+                        <td>{{ review.status }}</td>
+                        <td>{{ review.efficiency }}</td>
+                        <td>{{ future_trend }}</td>
+                        <td>
+                            <!-- Delete Button with Trash Icon -->
+                            <a href="{{ url_for('delete_review', review_id=review.id) }}" 
+                               class="btn btn-danger btn-sm" 
+                               onclick="return confirm('Are you sure you want to delete this review?');">
+                                <i class="bi bi-trash"></i> <!-- Trash bin icon -->
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </center>
+
+    <script>
+        // Add any necessary JavaScript for dashboard functionality
+    </script>
+</body>
+</html>
+{% endblock content %}

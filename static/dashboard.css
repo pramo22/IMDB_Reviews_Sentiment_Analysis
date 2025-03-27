@@ -1,0 +1,28 @@
+.dashboard-wrapper{
+    display: flex;
+    justify-content: space-evenly;
+}
+h3{
+    width: auto;
+    height: auto;
+    padding: 22px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.table-wrapper{
+    width: auto;
+    height: auto;
+    margin: 25px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+h1{
+    text-align:center; 
+    margin: 15px;
+    font-family: "Roboto Flex", sans-serif;
+    font-style: normal;
+}
+h2{
+    font-family: "Roboto Flex", sans-serif;
+    font-style: normal;
+}
