@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, render_template, flash, redirect, url_for
+from flask import Flask, request, jsonify, render_template, flash, redirect, url_for,session
 import joblib
 from sklearn.feature_extraction.text import TfidfVectorizer
 import nltk
@@ -14,7 +14,9 @@ import logging
 import random
 import numpy as np
 from sklearn.linear_model import LogisticRegression
+from werkzeug.security import generate_password_hash
 nltk.download('punkt')
+
 # Create Flask app
 app = Flask(__name__, static_folder='static')
 app.config["SECRET_KEY"] = "thisisasecretkey"
@@ -58,7 +60,7 @@ def register():
             flash("An account with this name already exists.", "danger")
             return render_template('register.html')
         hashed_password = bcrypt.generate_password_hash(data['password']).decode('utf-8')
-        new_user = Users(username=data['username'],email=email, password=hashed_password)
+        new_user = Users(username=data['username'],email=email, password=hashed_password, security_answer=data['security_answer'])
         db.session.add(new_user)
         db.session.commit()
         flash('Account created successfully! You can log in now.', 'success')
@@ -87,6 +89,57 @@ def logout():
     flash("Logged out successfully", "info")
     return redirect(url_for('login'))
 
+@app.route('/reset_request', methods=['GET','POST'])
+def reset_request():
+    if request.method == "POST":
+        username = request.form.get("username")
+        security_answer = request.form.get("security_answer")
+
+        user = Users.query.filter_by(username=username).first()
+
+        if user and user.security_answer.lower() == security_answer.lower():
+            session['reset_user'] = user.id
+            return redirect(url_for('reset_password'))
+        
+        else:
+            flash("Invalid username and security answer.", "danger")
+
+    return render_template('reset_request.html')
+
+@app.route('/reset_password', methods=['GET','POST'])
+def reset_password():
+    if 'reset_user' not in session:
+        flash("Session expired. Please try again","danger")
+        return redirect(url_for('reset_request'))
+    
+    user = Users.query.get(session['reset_user'])
+
+    if request.method == "GET":
+        num1 = random.randint(1,10)
+        num2 = random.randint(1,10)
+        session['captcha_answer'] = str(num1 + num2)
+        return render_template('reset_password.html', num1=num1, num2=num2)
+
+    if request.method == "POST":
+        new_password = request.form.get('new_password')
+        confirm_password = request.form.get('confirm_password')
+        captcha_response = request.form.get('captcha')
+
+        if captcha_response != session.get('captcha_answer'):
+            flash('Incorrect captcha answer. Please try again', 'danger')
+            return redirect(url_for('reset_password'))
+
+        if new_password == confirm_password:
+            user.password = bcrypt.generate_password_hash(new_password).decode('utf-8')
+            db.session.commit()
+            flash("Password reset successfully! You can log in.", "success")
+            session.pop('reset_user', None)
+            session.pop('captcha_answer', None)
+            return redirect(url_for('login'))
+        else:
+            flash("Password do not match. Please try again","danger")
+    
+    return render_template('reset_password.html')
 
 # Define the sentiment prediction route
 # Task queue for prioritization
@@ -102,20 +155,21 @@ def delete_review(review_id):
     
     return redirect(url_for('dashboard'))  # Redirect back to the dashboard
 
-    
 
 scheduler = BackgroundScheduler()
 
 def auto_update_status():
-    logging.info("Running automatic scheduling to update task statuses.")
-    
-    current_time = datetime.now()  # Get the current time
-    
-    reviews = Reviews.query.all()  # Fetch all reviews (tasks)
-    for review in reviews:
-        review.update_task(current_time)  # Update task status based on the current time
-        db.session.commit()  # Commit the changes to the database
-    logging.info("Automatic scheduling completed.")
+    with app.app_context():
+        logging.info("Running automatic scheduling to update task statuses.")
+        
+        current_time = datetime.now()  # Get the current time
+        
+        reviews = Reviews.query.all()  # Fetch all reviews (tasks)
+        
+        for review in reviews:
+            review.update_task(current_time)  # Update task status based on the current time
+            db.session.commit()  # Commit the changes to the database
+        logging.info("Automatic scheduling completed.")
 
 scheduler.add_job(func=auto_update_status, trigger="interval", minutes=2)
 scheduler.start()

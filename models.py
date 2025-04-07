@@ -12,7 +12,7 @@ class Users(db.Model, UserMixin):
     username = db.Column(db.String(50), unique=True, nullable=False)
     email = db.Column(db.String(100), unique=True, nullable=False)
     password = db.Column(db.String(100), nullable=False)
-    
+    security_answer = db.Column(db.String(100), nullable=False)
     # Changed the backref to 'user_reviews' for uniqueness
     reviews = db.relationship('Reviews', backref='user_reviews', lazy=True)  # Changed backref name
 
