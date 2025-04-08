@@ -1,20 +1,15 @@
-from flask import Flask, request, jsonify, render_template, flash, redirect, url_for,session
+from flask import Flask, request, jsonify, render_template, flash, redirect, url_for, session
 import joblib
-from sklearn.feature_extraction.text import TfidfVectorizer
 import nltk
-from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
-from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
+from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from models import db, Reviews, Users # Assuming you have these models
-from collections import deque
 from apscheduler.schedulers.background import BackgroundScheduler
-from datetime import datetime, timedelta
-from sklearn.feature_extraction.text import CountVectorizer
+from datetime import datetime
 import logging
 import random
 import numpy as np
 from sklearn.linear_model import LogisticRegression
-from werkzeug.security import generate_password_hash
 nltk.download('punkt')
 
 # Create Flask app
